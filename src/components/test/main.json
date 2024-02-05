@@ -1,0 +1,98 @@
+{
+    "heroSection": {
+        "description": "Metus dictum at tempor commodo ullamcorper. Velit ut tortor pretium viverra. In mollis nunc sed id semper risus.",
+        "MailingApi": ""
+    },
+    "biography": {
+        "description": "Dynamic and experienced entrepreneur with a decade of rich experience in founding and leading startups, facilitating ecosystem development, and fostering community growth.",
+        "items": [
+            {
+                "image": "",
+                "description": "",
+                "link": ""
+            },
+            {
+                "image": "",
+                "description": "",
+                "link": ""
+            },
+            {
+                "image": "",
+                "description": "",
+                "link": ""
+            }
+        ]
+    },
+    "blogSection": [
+        {
+            "id": 1,
+            " title": "TourismTech -The inception story",
+            "subtitle": "This is a quitting story",
+            "img": "https://picsum.photos/536/354",
+            "content": " In June 2020, after a lot of discussions and deliberations I decided to        quit the idea of TourismTech.I spoke to all the stakeholders in Tourism        Industry. Startups were also skeptical about this initiative and its        timing. Because most of them were my well-wishers & they want the best        for me in my career.A call to my friend changed my thought process.        <br /> I said, ‘ tell me one good reason to pursue the idea of Tourism       Accelerator. Why I shouldn’t do I know by now.’And the answer for that –        If you are doing this when everything is fine then you are like anyone        else. Everyone will remember you when the normal world is back for the        support you guys extended during the tough times.It was good enough to        pursue this idea. And it turns out the accelerator program became a        successful one in terms of a concept. We got 50+ applications from 6        different countries. <br />        We ended up having Goa Tourism Department as the partner for the        event.This is the simple version of how a new vertical called        TourismTech was created.I’ll keep on updating this space with what’s        happening. Because I feel journaling is needed to track the progress of        this initiative.",
+            "date": "2023/12/30"
+        },
+        {
+            "id": 2,
+            " title": "TourismTech -The inception story",
+            "subtitle": "This is a quitting story",
+            "img": "https://picsum.photos/536/354",
+            "content": " In June 2020, after a lot of discussions and deliberations I decided to        quit the idea of TourismTech.I spoke to all the stakeholders in Tourism        Industry. Startups were also skeptical about this initiative and its        timing. Because most of them were my well-wishers & they want the best        for me in my career.A call to my friend changed my thought process.        <br /> I said, ‘ tell me one good reason to pursue the idea of Tourism       Accelerator. Why I shouldn’t do I know by now.’And the answer for that –        If you are doing this when everything is fine then you are like anyone        else. Everyone will remember you when the normal world is back for the        support you guys extended during the tough times.It was good enough to        pursue this idea. And it turns out the accelerator program became a        successful one in terms of a concept. We got 50+ applications from 6        different countries. <br />        We ended up having Goa Tourism Department as the partner for the        event.This is the simple version of how a new vertical called        TourismTech was created.I’ll keep on updating this space with what’s        happening. Because I feel journaling is needed to track the progress of        this initiative.",
+            "date": "2023/12/30"
+        },
+        {
+            "id": 3,
+            " title": "TourismTech -The inception story",
+            "subtitle": "This is a quitting story",
+            "img": "https://picsum.photos/536/354",
+            "content": " In June 2020, after a lot of discussions and deliberations I decided to        quit the idea of TourismTech.I spoke to all the stakeholders in Tourism        Industry. Startups were also skeptical about this initiative and its        timing. Because most of them were my well-wishers & they want the best        for me in my career.A call to my friend changed my thought process.        <br /> I said, ‘ tell me one good reason to pursue the idea of Tourism       Accelerator. Why I shouldn’t do I know by now.’And the answer for that –        If you are doing this when everything is fine then you are like anyone        else. Everyone will remember you when the normal world is back for the        support you guys extended during the tough times.It was good enough to        pursue this idea. And it turns out the accelerator program became a        successful one in terms of a concept. We got 50+ applications from 6        different countries. <br />        We ended up having Goa Tourism Department as the partner for the        event.This is the simple version of how a new vertical called        TourismTech was created.I’ll keep on updating this space with what’s        happening. Because I feel journaling is needed to track the progress of        this initiative.",
+            "date": "2023/12/30"
+        }
+    ],
+    "ActivitySection": [
+        {
+            "id": 1,
+            "link": "https://picsum.photos/536/354",
+            "img": "https://picsum.photos/536/354",
+            "content": " In June 2020, after a lot of discussions and deliberations I decided to        quit the idea of TourismTech.I spoke to all the stakeholders in Tourism        Industry. Startups were also skeptical about this initiative and its        timing. Because most of them were my well-wishers & they want the best        for me in my career.A call to my friend changed my thought process.        <br /> I said, ‘ tell me one good reason to pursue the idea of Tourism       Accelerator. Why I shouldn’t do I know by now.’And the answer for that –        If you are doing this when everything is fine then you are like anyone        else. Everyone will remember you when the normal world is back for the        support you guys extended during the tough times.It was good enough to        pursue this idea. And it turns out the accelerator program became a        successful one in terms of a concept. We got 50+ applications from 6        different countries. <br />        We ended up having Goa Tourism Department as the partner for the        event.This is the simple version of how a new vertical called        TourismTech was created.I’ll keep on updating this space with what’s        happening. Because I feel journaling is needed to track the progress of        this initiative."
+        },
+        {
+            "id": 2,
+            "link": "https://picsum.photos/536/354",
+            "img": "https://picsum.photos/536/355",
+            "content": "Creating an ecosystem for TourismTech stakeholders in the country from Goa. A Go To Market program for growth stage startups in Tourism industry. FiiRE partnered with International stakeholders for various initiatives.  Startegic partner for Tourism Innovation Summit at Spain."
+            }
+    ],
+    "contactSection": {
+        "apiLink": ""
+    },
+    "AboutSection": {
+        "description": "Dynamic and experienced entrepreneur with a decade of rich experience in founding and leading startups, facilitating ecosystem development, and fostering community growth.",
+        "timestamp": [
+            {
+                "Date": "2021-current",
+                "Designation": "Chief Operating Officer",
+                "Company": "fire, goa, florida",
+                "Content": "Creating an ecosystem for TourismTech stakeholders in the country from Goa. A Go To Market program for growth stage startups in Tourism industry. FiiRE partnered with International stakeholders for various initiatives.  Startegic partner for Tourism Innovation Summit at Spain."
+            },
+            {
+                "Date": "2021-2025",
+                "Designation": "Incubation Manager, Analyst",
+                "Company": "fire, goa, florida",
+                "Content": "Creating an ecosystem for TourismTech stakeholders in the country from Goa. A Go To Market program for growth stage startups in Tourism industry. FiiRE partnered with International stakeholders for various initiatives.  Startegic partner for Tourism Innovation Summit at Spain."
+            },
+            {
+                "Date": "2021-2025",
+                "Designation": "Incubation Manager, Analyst",
+                "Company": "fire, goa, florida",
+                "Content": "Creating an ecosystem for TourismTech stakeholders in the country from Goa. A Go To Market program for growth stage startups in Tourism industry. FiiRE partnered with International stakeholders for various initiatives.  Startegic partner for Tourism Innovation Summit at Spain."
+            },
+            {
+                "Date": "2021-2025",
+                "Designation": "Incubation Manager, Analyst",
+                "Company": "fire, goa, florida",
+                "Content": "Creating an ecosystem for TourismTech stakeholders in the country from Goa. A Go To Market program for growth stage startups in Tourism industry. FiiRE partnered with International stakeholders for various initiatives.  Startegic partner for Tourism Innovation Summit at Spain."
+            }
+        ]
+    }
+}
