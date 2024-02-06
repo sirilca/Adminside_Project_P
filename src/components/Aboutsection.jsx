@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../Context/Tokencontext';
 import Logoutbutton from '../Login/Logoutbutton';
-
+import loadingsave from '../images/ll.gif'
+import loadingimg from '../images/lg.gif'
 
 
 
@@ -18,20 +19,27 @@ function Aboutsection() {
 
     const { decoded, setDecoded, getalldata, getverified } = useToken()
 
+    const [dataloading, setDataloading] = useState(false) //set loading page which makes when time elapsed for cloudinary
 
     useEffect(() => {
         getverified()
         getalldata()
+        getaboutfulldata()
     }, [])
 
     
-    useEffect(() => {
-        axios.get('https://brojectbackend.onrender.com/aboutsection').then((res) => {
+
+
+    const getaboutfulldata = async () => {
+        setDataloading(true)
+        await axios.get('https://brojectbackend.onrender.com/aboutsection').then((res) => {
             // console.log(res.data)
             setAboutdescription(res.data.description)
             setTimestamp(res.data.timestamp)
+            setDataloading(false)
         })
-    }, [])
+    }
+
 
 
 
@@ -240,6 +248,16 @@ function Aboutsection() {
     }
     return (
         <div>
+
+            {dataloading ?
+                <div className=' flex w-full justify-center items-center overflow-hidden absolute top-20'>
+
+                    <img className='h-28' src={loadingimg}></img>
+                </div>
+                : <></>}
+
+
+
             <Logoutbutton />
             {/* ---------------------------------------description section ---------------------------------------------*/}
 

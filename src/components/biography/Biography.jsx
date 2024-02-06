@@ -5,6 +5,10 @@ import axios from "axios"
 import { useToken } from '../../Context/Tokencontext';
 import { useNavigate } from 'react-router-dom';
 import Logoutbutton from '../../Login/Logoutbutton';
+import loadingimg from '../../images/lg.gif'
+import loadingsvg from '../../images/ll.gif'
+
+
 function Biography() {
 
 
@@ -17,8 +21,10 @@ function Biography() {
     useEffect(() => {
         getverified()
         getalldata()
+        getallbiodata()
     }, [])
 
+    const [dataloading, setDataloading] = useState(false) //set loading page which makes when time elapsed for cloudinary
 
 
 
@@ -26,14 +32,16 @@ function Biography() {
     const [biodata, setBiodata] = useState(null) //contains biodata
     const [items, setItems] = useState([]) // contains all items array from server, if item then show all items
 
-    useEffect(()=>{
-        axios.get('https://brojectbackend.onrender.com/biography').then((res)=>{
-            console.log(res.data)
+
+    const getallbiodata=async ()=>{
+        setDataloading(true)
+        await axios.get('https://brojectbackend.onrender.com/biography').then((res) => {
+            // console.log(res.data)
             setBiodata(res.data.description)
             setItems(res.data.items)
+            setDataloading(false)
         })
-
-    },[])
+    }
 
     const [bioedit, setBioedit] = useState(true) //recheck when pressed cancel and save
     const [imagebase64code, setImagebase64code] = useState() //image uploaded converrted to base64 then only send to server
@@ -51,12 +59,14 @@ function Biography() {
 
     const reloadAllDataUsingUsEffect=(data)=>{
 
+        setDataloading(true)
             axios.get('https://brojectbackend.onrender.com/biography').then((res) => {
+                
                 console.log(res.data)
                 setBiodata(res.data.description)
                 setItems(res.data.items)
             })
-
+            
             if (data="jii"){
                 axios.get('https://brojectbackend.onrender.com/biography').then((res) => {
                     console.log(res.data)
@@ -65,6 +75,7 @@ function Biography() {
                 })
             }
 
+            setDataloading(false)
     }
 
 
@@ -310,6 +321,8 @@ function Biography() {
 
         }
     }
+
+
     return (
         <div className=' overflow-hidden'>
             <Logoutbutton />
@@ -322,7 +335,12 @@ function Biography() {
                 </h1>
             </div>
 
+            {dataloading?
+            <div className=' flex w-full justify-center items-center overflow-hidden absolute top-20'>
 
+                <img  className='h-28' src={loadingimg}></img>
+            </div>
+            :<></>}
 
 
             <h1 className='text-[2em] text-blue-950 font-bold'>Description</h1>
@@ -373,7 +391,6 @@ function Biography() {
                 <button className='mx-8 px-[1.4rem] py-[.5rem] rounded-[8px] bg-green-800 text-white flex-none text=2xl'
                     onClick={PressingAddData}>Add Data</button>
             </div>
-            {loading?<div className='  w-lvw text-center z-40 text-red-950 text-[2vw] font-bold'>Loading...</div>:<></>}
 
             {newdatacheck ?
                 <Addnewdata 
@@ -405,6 +422,8 @@ function Biography() {
                             {/* if the itemidcheck gives id as same coz we pressed edit it contain id of that particular item */}
                             {itemidcheck[0]._id == item._id ?
                                 <>
+                                    {loading ? <div className='flex w-full items-center justify-center'><img src={loadingsvg} className='size-20'></img></div> : null}
+
 
                                     <div className=' h-[24vw] border-2 border-red-00 mt-[3vw] mb-[.8vw] mx-5 overflow-hidden '>
                                         <div className='grid grid-cols-2 m-[1.5vw] mb-0 bg-orange-00'>

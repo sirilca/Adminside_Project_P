@@ -11,20 +11,23 @@ const Login = () => {
     const { decoded, setDecoded, getalldata, getverified,error }=useToken()
 
     const nav=useNavigate()
-
+    const cookies = new Cookies()
     useEffect(() => {
-        // console.log(error+"-----------------"+decoded)
-        if(!error){
-            // getalldata()
-            // getverified()
+        console.log(error+"-----------------"+decoded)
+        // getverified()
+        const jwt=cookies.get('jwt')
+        if(jwt){
             nav('/home')
         }
+        // if(!error){
+        //     // getalldata()
+        //     nav('/home')
+        // }
         // else if(decoded){
         // }
     }, [])
 
 
-    const cookies=new Cookies()
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [response, setResponse] = useState('')
@@ -34,9 +37,12 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://brojectbackend.onrender.com/api/login', { name, password }, { withCredentials: true });
+            const response = await axios.post('https://brojectbackend.onrender.com/api/login', { name, password }, );
             setResponse(response.data)
+            console.log("login place \n"+response.data.token)
             if(response.data.message ==='Login successful'){
+                // cookies.set('jwt',response.data.token,{httpOnly:true})
+                localStorage.setItem('jwt', response.data.token);
                 nav('/home')
             }
 

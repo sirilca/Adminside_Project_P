@@ -4,34 +4,46 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../Context/Tokencontext';
 import Logoutbutton from '../Login/Logoutbutton';
+import loadingimg from '../images/lg.gif'
+import loadingsvg from '../images/ll.gif'
+
 const ActivitySection = () => {
 
 
 
-
-
+    const [dataloading, setDataloading] = useState(false) //set loading page which makes when time elapsed for cloudinary
+    
+    
     const { getalldata, getverified} = useToken()
-
-
+    
+    
     useEffect(() => {
         getverified()
         getalldata()
+        getallactivity()
     }, [])
+    
+    
+    
 
-
-
-
-
-
+    
+    
     //----------------------------------get all data-------------------------------
     const [activitySections, setActivitySection] = useState([])
-
-    useEffect(() => {
-        axios.get('https://brojectbackend.onrender.com/activity').then((res) => {
+    
+    
+    
+    const getallactivity=async ()=>{
+        setDataloading(true)
+        await axios.get('https://brojectbackend.onrender.com/activity').then((res) => {
             console.log(res.data)
             setActivitySection(res.data)
+            
         })
-    }, [])
+        setDataloading(false)
+
+
+    }
 
     const reloadAllDataUsingUseEffect = async () => {
 
@@ -246,6 +258,16 @@ const ActivitySection = () => {
 
     return (
         <div>
+
+            {dataloading ?
+                <div className=' flex w-full justify-center items-center overflow-hidden absolute top-20'>
+
+                    <img className='h-28' src={loadingimg}></img>
+                </div>
+                : <></>}
+
+
+
             <Logoutbutton/>
 
             <div className="activity-section-header flex items-center justify-center h-20 bg-blue-900 mb-24">
@@ -255,7 +277,7 @@ const ActivitySection = () => {
             </div>
 
 
-            <div className="activity-controls mb-5">
+            <div className="activity-controls mb-12">
                 <div className="flex items-center justify-between">
                     <h1 className="text-2xl text-blue-950 font-bold">Activities</h1>
                     <button className="bg-green-800 text-white py-1 px-3 rounded-md text-base" onClick={PressingAddData}>
@@ -264,7 +286,6 @@ const ActivitySection = () => {
                 </div>
             </div>
 
-            {loading ? <div className=' my-4 w-lvw text-center z-40 text-red-950 text-[2vw] font-bold'>Loading...</div> : <></>}
 
             {/* --------------------------NEWDATA ADD section ----------------------*/}
 
@@ -323,6 +344,8 @@ const ActivitySection = () => {
 
                                 UniqueEditId[0]._id === i._id ?
                                     <div className='mb-[5vw]'>
+                                        {loading ? <div className='flex w-full items-center justify-center'><img src={loadingsvg} className='size-20'></img></div> : null}
+
 
                                         <div className='flex gap-20  h-[14vw]  bg-zinc-100'>
                                             <div className=' flex-none object-contain h-[13vw] w-[20vw] bg-green-100 flex justify-center items-center overflow-hidden'>
@@ -352,14 +375,14 @@ const ActivitySection = () => {
                                     </div>
                                     :
                                     //  ---------------------------SHOWING ALL Activites AS MAP--------------------------- 
-                                    <div className='mb-[5vw]'>
+                                    <div className='mb-[5vw] flex flex-col'>
 
-                                        <div className='flex gap-20  h-[14vw]  bg-zinc-100'>
-                                            <div className=' flex-none object-contain h-[13vw] w-[20vw] bg-green-100 flex justify-center items-center overflow-hidden'>
+                                        <div className='flex md:gap-20 gap-10 md:flex-row flex-col justify-center items-center bg-zinc-100'>
+                                            <div className=' flex-none object-contain md:h-[13vw] md:w-[20vw] w-44 h-32 bg-green-100 flex justify-center items-center overflow-hidden'>
                                                 <img className='w-auto h-auto' src={i.img}></img>
                                             </div>
 
-                                            <div className='h-[13vw] overflow-auto'>
+                                            <div className=' overflow-auto'>
                                                 <p >{i.content}</p>
                                             </div>
 
@@ -389,7 +412,7 @@ const ActivitySection = () => {
                 })
                     :
                     <div>
-                        <div className='flex justify-center items-center w-lvw'>
+                        <div className='flex justify-center items-center w-full'>
                             <h1 className='m-0 p-0 text-red-950 text-[1.6vw]'>No Data To Show</h1>
                         </div>
                     </div>

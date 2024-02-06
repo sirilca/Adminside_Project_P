@@ -3,23 +3,28 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from '../Context/Tokencontext';
 import Logoutbutton from '../Login/Logoutbutton';
+import loadingimg from '../images/lg.gif'
+import loadingsvg from '../images/ll.gif'
+
 
 const BlogSection = () => {
 
-
+    const [dataloading, setDataloading] = useState(false) //set loading page which makes when time elapsed for cloudinary
+    
     const nav = useNavigate();
-
-
+    
+    
     const { decoded, setDecoded, getalldata, getverified } = useToken()
-
-
+    
+    
     useEffect(() => {
         getverified()
         getalldata()
+        getallblogdata()
     }, [])
 
 
-
+    
 
 
     const [blogSections, setBlogSections] = useState([]);
@@ -32,12 +37,14 @@ const BlogSection = () => {
     const [date, setDate] = useState('');
     const [tag, setTag] = useState('');
     const imageref = useRef();
-
-    useEffect(() => {
-        axios.get('https://brojectbackend.onrender.com/blog').then((res) => {
+    
+    const getallblogdata=async() => {
+        setDataloading(true)
+        await axios.get('https://brojectbackend.onrender.com/blog').then((res) => {
             setBlogSections(res.data);
         });
-    }, []);
+        setDataloading(false)
+    }
 
     const reloadAllDataUsingUseEffect = async () => {
         await axios.get('https://brojectbackend.onrender.com/blog').then((res) => {
@@ -84,7 +91,7 @@ const BlogSection = () => {
                 const selectedItem = blogSections.find(item => item._id === id);
                 setTitle(selectedItem.title);
                 setSubtitle(selectedItem.subtitle);
-                setImg(selectedItem.img);
+                setImg(null);
                 setContent(selectedItem.content);
                 setDate(selectedItem.date);
                 setTag(selectedItem.tag)
@@ -245,6 +252,14 @@ const BlogSection = () => {
 
     return (
         <div>
+
+            {dataloading ?
+                <div className=' flex w-full justify-center items-center overflow-hidden absolute top-20'>
+
+                    <img className='h-28' src={loadingimg}></img>
+                </div>
+                : <></>}
+
             <Logoutbutton />
             <div className="activity-section-header flex items-center justify-center h-20 bg-purple-950 mb-24">
                 <h1 className="text-4xl font-sans text-white sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
@@ -291,7 +306,6 @@ const BlogSection = () => {
 
 
 
-            {loading ? <div className='my-4 w-lvw text-center z-40 text-red-950 text-[2vw] font-bold'>Loading...</div> : null}
 
 
             {blogSections.map((blog, index) => (
@@ -308,6 +322,8 @@ const BlogSection = () => {
                         //     <button className='bg-slate-100 text-slate-800 w-24 h-8 rounded-[6px] text-md border-2 border-slate-800 hover:bg-red-800 hover:text-white' onClick={cancelEditBlogItem}>Cancel</button>
                         // </div>
                         <div>
+                            {loading ? <div className='flex w-full items-center justify-center'><img src={loadingsvg} className='size-20'></img></div> : null}
+
                             <input value={title} onChange={(e) => setTitle(e.target.value)} className='border-2 border-zinc-400 rounded-[2px] w-[20vw]' placeholder='Enter Title'></input>
                             <input value={subtitle} onChange={(e) => setSubtitle(e.target.value)} className='border-2 border-zinc-400 rounded-[2px] w-[20vw]' placeholder='Enter Subtitle'></input>
                             <input value={tag} onChange={(e) => setTag(e.target.value)} type="text" className='border-2 border-zinc-400 rounded-[2px] ' placeholder=' Enter Tag' ></input>
@@ -356,11 +372,11 @@ const BlogSection = () => {
                             // </div>
 
                             <div key={index}>
-                                <div className='flex gap-20 h-[14vw] bg-zinc-100'>
-                                    <div className='flex-none object-contain h-[13vw] w-[20vw] bg-green-100 flex justify-center items-center overflow-hidden'>
+                                <div className='flex gap-20  bg-zinc-100'>
+                                    <div className='flex-none object-contain  w-[20vw] bg-green-00 flex justify-center items-center overflow-hidden'>
                                         <img className='w-auto h-auto' src={blog.img} alt='Blog Image'></img>
                                     </div>
-                                    <div className='h-[13vw] overflow-auto my-4'>
+                                    <div className=' overflow-auto my-4'>
                                         <h2 className='font-bold text-orange-900 my-2'>{blog.tag}</h2>
                                         <h2 className='font-semibold my-2'>{blog.title}</h2>
                                         <h3 className='font-medium my-2'>{blog.subtitle}</h3>

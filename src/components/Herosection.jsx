@@ -3,35 +3,43 @@ import React, { useEffect, useState } from 'react';
 import { useToken } from '../Context/Tokencontext';
 import { useNavigate } from 'react-router-dom';
 import Logoutbutton from '../Login/Logoutbutton';
+import loadingimg from '../images/lg.gif'
 
 function HeroSection() {
 
-
-
+    const [dataloading, setDataloading] = useState(false) //set loading page which makes when time elapsed for cloudinary
+    
+    
     const nav = useNavigate();
-
+    
 
     const { decoded, setDecoded, getalldata, getverified } = useToken()
-
-
+    
+    
     useEffect(() => {
         getverified()
         getalldata()
+        getallherosectiondata()
     }, [])
-
-
-
+    
+    
+    
     
     const [description, setDescription] = useState('');
     const [mailingApi, setMailingApi] = useState('');
     const [descriptioncheck, setDescriptioncheck] = useState(false);
     const [mailingApicheck, setMailingApicheck] = useState(false);
-    useEffect(() => {
-        axios.get('https://brojectbackend.onrender.com/herosection').then((res) => {
+    
+    
+    const getallherosectiondata= async () => {
+        setDataloading(true)
+        await axios.get('https://brojectbackend.onrender.com/herosection').then((res) => {
             setDescription(res.data.description);
             setMailingApi(res.data.MailingApi);
         });
-    }, []);
+        setDataloading(false)
+    }
+    
 
 
     const saveDescription = () => {
@@ -65,6 +73,14 @@ function HeroSection() {
 
     return (
         <div>
+
+            {dataloading ?
+                <div className=' flex w-full justify-center items-center overflow-hidden absolute top-20'>
+
+                    <img className='h-28' src={loadingimg}></img>
+                </div>
+                : <></>}
+
             <Logoutbutton />
 
             <div className="activity-section-header flex items-center justify-center h-20 bg-red-900 mb-24">
